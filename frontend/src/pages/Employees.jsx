@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Card, Popconfirm, Typography, message } from 'antd';
+import { Button, Card, Typography, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import EmployeeTable from '../components/EmployeeTable';
 import EmployeeForm from '../components/EmployeeForm';

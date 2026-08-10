@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Card, Col, Row, Table, Typography, Button, message } from 'antd';
+import { Card, Col, Row, Table, Typography, Button, message, Statistic } from 'antd';
 import { PrinterOutlined } from '@ant-design/icons';
 import { getEmployees } from '../services/employeeService';
 
@@ -49,8 +49,7 @@ const Report = () => {
       <Row gutter={16} style={{ marginBottom: 16 }}>
         <Col span={8}>
           <Card>
-            <Typography.Title level={4}>Total Employees</Typography.Title>
-            <Typography.Text>{employees.length}</Typography.Text>
+            <Statistic title="Total Employees" value={employees.length} loading={loading} />
           </Card>
         </Col>
         <Col span={8}>

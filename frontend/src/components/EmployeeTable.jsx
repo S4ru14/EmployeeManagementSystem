@@ -1,4 +1,4 @@
-import { Table, Button, Space, Tag } from 'antd';
+import { Table, Button, Space, Popconfirm } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const EmployeeTable = ({ employees, onEdit, onDelete, loading }) => {
@@ -18,13 +18,20 @@ const EmployeeTable = ({ employees, onEdit, onDelete, loading }) => {
       render: (_, record) => (
         <Space>
           <Button icon={<EditOutlined />} onClick={() => onEdit(record)} />
-          <Button danger icon={<DeleteOutlined />} onClick={() => onDelete(record)} />
+          <Popconfirm
+            title="Are you sure you want to delete this employee?"
+            onConfirm={() => onDelete(record)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button danger icon={<DeleteOutlined />} />
+          </Popconfirm>
         </Space>
       )
     }
   ];
 
-  return <Table rowKey="id" columns={columns} dataSource={employees} loading={loading} />;
+  return <Table rowKey="id" columns={columns} dataSource={employees} loading={loading} locale={{ emptyText: 'No employees found' }} />;
 };
 
 export default EmployeeTable;

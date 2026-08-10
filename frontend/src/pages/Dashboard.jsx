@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Card, Col, Row, Typography, Spin } from 'antd';
+import { Card, Col, Row, Typography, Spin, Statistic } from 'antd';
 import { getEmployees } from '../services/employeeService';
 
 const Dashboard = () => {
@@ -30,8 +30,11 @@ const Dashboard = () => {
       <Row gutter={16}>
         <Col span={8}>
           <Card>
-            <Typography.Title level={4}>Total Employees</Typography.Title>
-            {loading ? <Spin /> : <Typography.Title level={2}>{totalEmployees}</Typography.Title>}
+            {loading ? (
+              <Spin />
+            ) : (
+              <Statistic title="Total Employees" value={totalEmployees} />
+            )}
           </Card>
         </Col>
       </Row>
