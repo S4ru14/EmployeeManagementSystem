@@ -1,0 +1,17 @@
+# Backend build artifacts
+backend/bin/
+backend/obj/
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/dist/
+
+# Environment and local settings
+.env
+*.user
+*.suo
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
