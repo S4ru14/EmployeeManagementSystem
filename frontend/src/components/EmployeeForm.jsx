@@ -5,14 +5,18 @@ import dayjs from 'dayjs';
 const EmployeeForm = ({ visible, onCancel, onSubmit, initialValues }) => {
   const [form] = Form.useForm();
 
+  const transformedInitialValues = initialValues
+    ? {
+        ...initialValues,
+        dateHired: initialValues.dateHired ? dayjs(initialValues.dateHired) : null
+      }
+    : undefined;
+
   useEffect(() => {
     if (visible) {
-      form.setFieldsValue({
-        ...initialValues,
-        dateHired: initialValues?.dateHired ? dayjs(initialValues.dateHired) : null
-      });
+      form.setFieldsValue(transformedInitialValues || {});
     }
-  }, [visible, initialValues, form]);
+  }, [visible, transformedInitialValues, form]);
 
   const handleOk = async () => {
     try {
@@ -38,7 +42,12 @@ const EmployeeForm = ({ visible, onCancel, onSubmit, initialValues }) => {
       }}
       okText="Save"
     >
-      <Form form={form} layout="vertical" initialValues={initialValues}>
+      <Form
+        form={form}
+        layout="vertical"
+        initialValues={transformedInitialValues}
+        key={initialValues?.id || 'new'}
+      >
         <Form.Item name="employeeCode" label="Employee Code" rules={[{ required: true, message: 'Employee Code is required.' }]}> 
           <Input />
         </Form.Item>
