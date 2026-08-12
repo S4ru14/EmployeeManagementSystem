@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Employees from './pages/Employees';
 import Report from './pages/Report';
 import ProtectedRoute from './components/ProtectedRoute';
-import { logout, getUsername } from './services/authService';
+import { logout, getUsername, isAuthenticated } from './services/authService';
 
 const { Header, Sider, Content } = Layout;
 
@@ -63,7 +63,7 @@ function App() {
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/employees" element={<ProtectedRoute><Employees /></ProtectedRoute>} />
             <Route path="/report" element={<ProtectedRoute><Report /></ProtectedRoute>} />
-            <Route path="/" element={getUsername() ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+            <Route path="/" element={isAuthenticated() ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Content>
